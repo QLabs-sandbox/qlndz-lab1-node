@@ -1,0 +1,24 @@
+version: 1
+reviews:
+  auto_review:
+    triggers:
+      - pull_request
+    branches:
+      include:
+        - main
+        - develop
+    changes:
+      min_lines_changed: 1
+    auto_apply_labels: true
+
+summary:
+  enabled: true
+
+inline_comments:
+  enabled: true
+
+review:
+  behavior:
+    request_changes_on_major_issues: true
+    require_tests_for_new_code: false
+    require_description: false
