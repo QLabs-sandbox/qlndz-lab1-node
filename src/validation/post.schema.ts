@@ -1,9 +1,5 @@
 import { z } from "zod";
-
-const numberFromString = z
-  .string()
-  .regex(/^\d+$/, "Must be a numeric value")
-  .transform((val) => Number(val));
+import { numberFromString } from "./helpers";
 
 export const createPostSchema = z.object({
   body: z.object({
