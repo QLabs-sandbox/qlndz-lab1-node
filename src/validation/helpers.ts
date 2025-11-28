@@ -7,10 +7,7 @@ export const numberFromString = z
 
 export const idParamSchema = z.object({
   params: z.object({
-    id: z
-      .string()
-      .regex(/^\d+$/, "ID must be a number")
-      .transform((val) => Number(val)),
+    id: numberFromString,
   }),
 });
 

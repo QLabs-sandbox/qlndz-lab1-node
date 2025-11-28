@@ -1,24 +1,10 @@
-version: 1
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 reviews:
   auto_review:
-    triggers:
-      - pull_request
-    branches:
-      include:
-        - main
-        - develop
-    changes:
-      min_lines_changed: 1
-    auto_apply_labels: true
-
-summary:
-  enabled: true
-
-inline_comments:
-  enabled: true
-
-review:
-  behavior:
-    request_changes_on_major_issues: true
-    require_tests_for_new_code: false
-    require_description: false
+    enabled: true
+    base_branches:
+      - main
+      - develop
+  auto_apply_labels: true
+  request_changes_workflow: true
+  high_level_summary: true
