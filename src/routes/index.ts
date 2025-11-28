@@ -1,9 +1,12 @@
 import express from "express";
-import exampleRoutes from "./example.routes";
+import usersRoutes from "./users.routes";
+import postsRoutes from "./posts.routes";
+import commentsRoutes from "./comments.routes";
 
 const router = express.Router();
 
-// Attach route groups
-router.use("/example", exampleRoutes);
+router.use("/users", usersRoutes);
+router.use("/posts", postsRoutes);
+router.use("/comments", commentsRoutes);
 
 export default router;

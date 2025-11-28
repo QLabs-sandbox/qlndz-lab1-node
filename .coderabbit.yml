@@ -1,0 +1,10 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+reviews:
+  auto_review:
+    enabled: true
+    base_branches:
+      - main
+      - develop
+  auto_apply_labels: true
+  request_changes_workflow: true
+  high_level_summary: true
