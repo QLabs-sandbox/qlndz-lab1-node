@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import {
   getAllUsers,
   getUserById,
-  createUser,
   updateUser,
   deleteUser,
 } from "../services/users.service";
@@ -19,13 +18,6 @@ export const getUser = async (req: Request, res: Response) => {
   if (!user) return res.status(404).json({ message: "User not found" });
 
   res.json(user);
-};
-
-export const postUser = async (req: Request, res: Response) => {
-  const { name, email } = req.body;
-
-  const newUser = await createUser(name, email);
-  res.status(201).json(newUser);
 };
 
 export const putUser = async (req: Request, res: Response) => {

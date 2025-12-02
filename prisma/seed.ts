@@ -1,10 +1,25 @@
 import prisma from "../src/prisma";
+import bcrypt from "bcrypt";
 
 async function main() {
+  // Create admin user
+  const adminPassword = await bcrypt.hash("admin123", 10);
+  const admin = await prisma.user.create({
+    data: {
+      name: "Admin",
+      email: "admin@example.com",
+      password: adminPassword,
+      role: "ADMIN",
+    },
+  });
+
+  // Create regular user with a post + comment
+  const userPassword = await bcrypt.hash("password123", 10);
   const user = await prisma.user.create({
     data: {
       name: "John Doe",
       email: "john@example.com",
+      password: userPassword,
       posts: {
         create: [
           {
@@ -18,6 +33,7 @@ async function main() {
                     create: {
                       name: "Jane Doe",
                       email: "jane@example.com",
+                      password: await bcrypt.hash("jane123", 10),
                     },
                   },
                 },
@@ -29,11 +45,10 @@ async function main() {
     },
   });
 
-  console.log("Seed complete:", user);
+  console.log("Seed complete:", { admin, user });
 }
 
 main()
-  .then(async () => await prisma.$disconnect())
   .catch((e) => {
     console.error(e);
     process.exit(1);
